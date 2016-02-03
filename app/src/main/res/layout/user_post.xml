@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:id="@+id/userContainer">
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_alignTop="@+id/avatar"
+            android:layout_toRightOf="@+id/avatar"
+            android:text="kamran619"
+            android:layout_marginTop="5dp" />
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_toRightOf="@+id/avatar"
+            android:text="Brooklyn Bridge Park"
+            android:layout_alignBottom="@+id/avatar"
+            android:layout_marginBottom="5dp" />
+        <TextView
+            android:id="@+id/postTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="10h"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/postImage"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/userContainer"
+        />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:layout_below="@+id/postImage"
+        android:id="@+id/contentContainer">
+
+        <TextView
+            android:id="@+id/likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:text="11 likes"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:id="@+id/caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:text="This is the absolute best spot to sit and read the story of the Brooklyn Bridge #winning This is the absolute best spot to sit and read the story of the Brooklyn Bridge #winning"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/likes"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:ellipsize="end" />
+        <TextView
+            android:id="@+id/comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:text="xoxox This is awesome!\nBlackdemon619 Hiii"
+            android:ellipsize="end"
+            android:layout_below="@+id/caption"
+            android:layout_alignLeft="@+id/caption"
+            android:layout_alignStart="@+id/caption" />
+    </RelativeLayout>
+</RelativeLayout>
