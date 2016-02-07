@@ -50,7 +50,7 @@ public class UserPostAdapter extends ArrayAdapter<InstagramPost> {
         tvLocation.setText(post.getLocation());
 
         TextView tvCreationTime = (TextView) convertView.findViewById(R.id.postTime);
-        long creationTime = post.getCreatedTime();
+        long creationTime = post.getCreatedTime() * 1000;
         String relativeTime = new PrettyTime().format(new Date(creationTime));
         tvCreationTime.setText(relativeTime);
 
@@ -109,14 +109,14 @@ public class UserPostAdapter extends ArrayAdapter<InstagramPost> {
             commentsString.append(username);
             int spanBeginning = commentsString.length() - username.length();
             commentsString.setSpan(new StyleSpan(Typeface.BOLD), spanBeginning, username.length() + spanBeginning, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            commentsString.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.colorBahamaBlue)), spanBeginning, username.length() + spanBeginning, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            commentsString.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.colorPrimary)), spanBeginning, username.length() + spanBeginning, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             commentsString.append(" ");
             commentsString.append(comment);
             int commentSpanBeginning = commentsString.length() - comment.length();
             colorHashtagsInText(commentsString, comment, commentSpanBeginning);
             colorTagsInText(commentsString, comment, commentSpanBeginning);
             if (i < comments.length - 1) {
-                commentsString.append("\n\n");
+                commentsString.append("\n");
             }
         }
 
@@ -143,7 +143,7 @@ public class UserPostAdapter extends ArrayAdapter<InstagramPost> {
                         endOfSymbol = text.length();
                     }
                     inBuilder.setSpan(new StyleSpan(Typeface.ITALIC), index + spanBeginning, endOfSymbol + spanBeginning, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    inBuilder.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.colorBahamaBlue)), index + spanBeginning, endOfSymbol + spanBeginning, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    inBuilder.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.colorPrimary)), index + spanBeginning, endOfSymbol + spanBeginning, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
         }

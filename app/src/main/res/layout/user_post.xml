@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/userContainer"
@@ -28,31 +29,39 @@
             android:layout_toRightOf="@+id/avatar"
             android:maxLines="1"
             android:text="kamran619"
-            android:textColor="@color/colorBahamaBlue"
-            android:textStyle="bold" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/avatar"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/avatar"
             android:maxLines="1"
             android:text="Brooklyn Bridge Park"
-            android:textColor="@color/colorPictonBlue" />
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/postTime"
+            android:layout_marginRight="10dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_below="@+id/username" />
 
         <TextView
             android:id="@+id/postTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:maxLines="1"
             android:text="10h"
-            android:textColor="@color/colorLoblolly" />
+            android:textColor="@color/colorLoblolly"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:drawableLeft="@drawable/clock"
+            android:drawablePadding="5dp"
+            android:layout_alignTop="@+id/username" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -79,6 +88,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
 />
+
     </RelativeLayout>
 
 
@@ -95,12 +105,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:maxLines="1"
             android:text="11 likes"
-            android:textColor="@color/colorBahamaBlue"
-            android:textStyle="bold" />
+            android:textColor="@color/colorPrimaryDark"
+            android:drawableLeft="@drawable/heart"
+            android:drawablePadding="5dp"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/caption"
@@ -116,7 +129,8 @@
             android:ellipsize="end"
             android:maxLines="3"
             android:text="This is the absolute best spot to sit and read the story of the Brooklyn Bridge #winning This is the absolute best spot to sit and read the story of the Brooklyn Bridge #winning"
-            android:textColor="@color/colorPaleSky" />
+            android:textColor="@color/colorPaleSky"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/comments"
@@ -126,7 +140,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
-            android:text="xoxox This is awesome!\nBlackdemon619 Hiii" />
+            android:text="xoxox This is awesome!\nBlackdemon619 Hiii"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </RelativeLayout>
 
     <View style="@style/Divider"/>
