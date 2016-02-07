@@ -59,6 +59,7 @@ public class UserPostAdapter extends ArrayAdapter<InstagramPost> {
         if (post.getContentType() == InstagramPost.InstagramPostContentType.PHOTO) {
             ivImage.setVisibility(View.VISIBLE);
             mVideoView.setVisibility(View.GONE);
+            ivImage.getLayoutParams().height = post.getImageHeight();
             Picasso.with(getContext()).load(post.getContentUrl()).placeholder(R.drawable.placeholder).into(ivImage);
         } else if (post.getContentType() == InstagramPost.InstagramPostContentType.VIDEO) {
             ivImage.setVisibility(View.GONE);

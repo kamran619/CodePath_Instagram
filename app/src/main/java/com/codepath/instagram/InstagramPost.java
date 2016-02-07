@@ -8,6 +8,8 @@ public class InstagramPost {
 
     private String profilePictureLink;
 
+    int imageHeight;
+
     private String caption;
 
     private InstagramPostContentType contentType;
@@ -23,7 +25,7 @@ public class InstagramPost {
         VIDEO
     }
 
-    public InstagramPost(String username, String caption, String contentUrl, String location, long createdTime, long likesCount, InstagramComment[] comments, InstagramPostContentType contentType, String profilePictureLink) {
+    public InstagramPost(String username, String caption, String contentUrl, String location, long createdTime, long likesCount, InstagramComment[] comments, InstagramPostContentType contentType, String profilePictureLink, int imageHeight) {
         this.username = username;
         this.caption = caption;
         this.contentUrl = contentUrl;
@@ -33,6 +35,7 @@ public class InstagramPost {
         this.comments = comments;
         this.contentType = contentType;
         this.profilePictureLink = profilePictureLink;
+        this.imageHeight = imageHeight;
     }
 
     public String getUsername() {
@@ -69,6 +72,10 @@ public class InstagramPost {
 
     public String getProfilePictureLink() {
         return profilePictureLink;
+    }
+
+    public int getImageHeight() {
+        return imageHeight;
     }
 
     public static class InstagramComment {

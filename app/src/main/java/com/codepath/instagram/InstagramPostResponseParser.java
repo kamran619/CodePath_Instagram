@@ -14,6 +14,8 @@ public class InstagramPostResponseParser {
     final static private String TYPE_KEY = "type";
     final static private String IMAGE_KEY = "image";
     final static private String IMAGES_KEY = "images";
+    final static private String HEIGHT_KEY = "height";
+
     final static private String STANDARD_RESOLUTION_KEY = "standard_resolution";
     final static private String URL_KEY = "url";
 
@@ -55,9 +57,11 @@ public class InstagramPostResponseParser {
 
             InstagramPost.InstagramPostContentType contentType = InstagramPost.InstagramPostContentType.DEFAULT;
             String contentUrl = null;
+            int imageHeight = 0;
             if (type.equalsIgnoreCase(IMAGE_KEY)) {
                 contentType = InstagramPost.InstagramPostContentType.PHOTO;
                 contentUrl = jsonObject.getJSONObject(IMAGES_KEY).getJSONObject(STANDARD_RESOLUTION_KEY).getString(URL_KEY);
+                imageHeight = jsonObject.getJSONObject(IMAGES_KEY).getJSONObject(STANDARD_RESOLUTION_KEY).getInt(HEIGHT_KEY);
             } else if (type.equalsIgnoreCase(VIDEO_KEY)) {
                 contentType = InstagramPost.InstagramPostContentType.VIDEO;
                 contentUrl = jsonObject.getJSONObject(VIDEOS_KEY).getJSONObject(STANDARD_RESOLUTION_KEY).getString(URL_KEY);
@@ -103,7 +107,7 @@ public class InstagramPostResponseParser {
                 }
             }
 
-            InstagramPost post = new InstagramPost(username, caption, contentUrl, postLocation, createdTime, likesCount, comments, contentType, profilePictureLink);
+            InstagramPost post = new InstagramPost(username, caption, contentUrl, postLocation, createdTime, likesCount, comments, contentType, profilePictureLink, imageHeight);
             posts.add(post);
         }
 
