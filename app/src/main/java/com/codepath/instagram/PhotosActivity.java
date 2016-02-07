@@ -1,6 +1,7 @@
 package com.codepath.instagram;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
@@ -13,17 +14,38 @@ public class PhotosActivity extends AppCompatActivity {
 
     private UserPostAdapter mAdapter;
     private ListView lvPosts;
+    private SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lvPosts = (ListView) findViewById(R.id.lvPicture);
-        fetchAndDisplayInstagramPosts();
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        setupRefreshLayout();
+        fetchAndDisplayInstagramPosts(true);
     }
 
-    private void fetchAndDisplayInstagramPosts() {
-        showLoadingSpinner();
+    private void setupRefreshLayout() {
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                fetchAndDisplayInstagramPosts(false);
+            }
+        });
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+    }
+
+    private void fetchAndDisplayInstagramPosts(boolean showProgress) {
+        if (showProgress) {
+            showLoadingSpinner();
+        }
         hideListView();
         InstagramPostProvider provider = new InstagramPostProvider();
         provider.fetchPosts(new InstagramPostProvider.IOnPhotoFetched() {
@@ -81,8 +103,13 @@ public class PhotosActivity extends AppCompatActivity {
 
     private void loadPosts(ArrayList<InstagramPost> posts) {
         hideLoadingSpinner();
-        mAdapter = new UserPostAdapter(this, posts);
-        lvPosts.setAdapter(mAdapter);
+        if (mAdapter == null) {
+            mAdapter = new UserPostAdapter(this, posts);
+            lvPosts.setAdapter(mAdapter);
+        } else {
+            mAdapter.clear();
+            mAdapter.addAll(posts);
+        }
     }
 
     private void handleFetch(ArrayList<InstagramPost> posts, String errorDescription) {
@@ -95,5 +122,6 @@ public class PhotosActivity extends AppCompatActivity {
             hideListView();
             showStatusTextView();
         }
+        swipeContainer.setRefreshing(false);
     }
 }
