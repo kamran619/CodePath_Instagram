@@ -83,9 +83,12 @@ public class InstagramPost {
         private String username;
         private String comment;
 
-        public InstagramComment(String username, String comment) {
+        private String avatarPictureLink;
+
+        public InstagramComment(String username, String comment, String pictureLink) {
             this.username = username;
             this.comment = comment;
+            this.avatarPictureLink = pictureLink;
         }
 
         public String getUsername() {
@@ -96,6 +99,9 @@ public class InstagramPost {
             return comment;
         }
 
+        public String getAvatarPictureLink() {
+            return avatarPictureLink;
+        }
     }
 }
 

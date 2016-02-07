@@ -90,9 +90,9 @@ public class InstagramPostResponseParser {
             InstagramPost.InstagramComment[] comments = new InstagramPost.InstagramComment[0];
             JSONArray commentsJSONArray = jsonObject.getJSONObject(COMMENTS_KEY).getJSONArray(DATA_KEY);
             if (commentsJSONArray.length() > 0) {
-                int arrayLength = Math.min(COMMENT_COUNT, commentsJSONArray.length());
+                int arrayLength = commentsJSONArray.length();
                 comments = new InstagramPost.InstagramComment[arrayLength];
-                for (int j = 0; j < COMMENT_COUNT && j < commentsJSONArray.length(); j++) {
+                for (int j = 0; j < commentsJSONArray.length(); j++) {
                     JSONObject commentJSONObject = commentsJSONArray.getJSONObject(j);
                     String commentText = commentJSONObject.getString(TEXT_KEY);
                     if (commentText == null) {
@@ -102,7 +102,11 @@ public class InstagramPostResponseParser {
                     if (commentUsername == null) {
                         commentUsername = "";
                     }
-                    InstagramPost.InstagramComment comment = new InstagramPost.InstagramComment(commentUsername, commentText);
+                    String commentPictureLink = commentJSONObject.getJSONObject(FROM_KEY).getString(PROFILE_PICTURE);
+                    if (commentPictureLink == null) {
+                        commentPictureLink = "";
+                    }
+                    InstagramPost.InstagramComment comment = new InstagramPost.InstagramComment(commentUsername, commentText, commentPictureLink);
                     comments[j] = comment;
                 }
             }

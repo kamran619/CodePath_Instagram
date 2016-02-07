@@ -103,7 +103,8 @@ public class UserPostAdapter extends ArrayAdapter<InstagramPost> {
     private SpannableStringBuilder getCommentsString(InstagramPost post) {
         SpannableStringBuilder commentsString = new SpannableStringBuilder();
         InstagramPost.InstagramComment comments[] = post.getComments();
-        for (int i = 0; i < comments.length; i++) {
+        final int COMMENT_LIMIT = 2;
+        for (int i = 0; i < COMMENT_LIMIT; i++) {
             String username = comments[i].getUsername();
             String comment = comments[i].getComment();
             commentsString.append(username);
