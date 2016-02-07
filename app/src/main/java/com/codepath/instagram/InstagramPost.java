@@ -5,6 +5,9 @@ package com.codepath.instagram;
  */
 public class InstagramPost {
     private String username;
+
+    private String profilePictureLink;
+
     private String caption;
 
     private InstagramPostContentType contentType;
@@ -20,7 +23,7 @@ public class InstagramPost {
         VIDEO
     }
 
-    public InstagramPost(String username, String caption, String contentUrl, String location, long createdTime, long likesCount, InstagramComment[] comments, InstagramPostContentType contentType) {
+    public InstagramPost(String username, String caption, String contentUrl, String location, long createdTime, long likesCount, InstagramComment[] comments, InstagramPostContentType contentType, String profilePictureLink) {
         this.username = username;
         this.caption = caption;
         this.contentUrl = contentUrl;
@@ -29,6 +32,7 @@ public class InstagramPost {
         this.likesCount = likesCount;
         this.comments = comments;
         this.contentType = contentType;
+        this.profilePictureLink = profilePictureLink;
     }
 
     public String getUsername() {
@@ -61,6 +65,10 @@ public class InstagramPost {
 
     public InstagramPostContentType getContentType() {
         return contentType;
+    }
+
+    public String getProfilePictureLink() {
+        return profilePictureLink;
     }
 
     public static class InstagramComment {

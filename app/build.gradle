@@ -30,4 +30,6 @@ dependencies {
     compile "com.android.support:design:${supportLibVersion}"
     compile 'com.squareup.okhttp3:okhttp:3.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.ocpsoft:ocpsoft-pretty-time:1.0.7'
+
 }

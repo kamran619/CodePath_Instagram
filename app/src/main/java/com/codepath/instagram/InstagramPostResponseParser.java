@@ -29,6 +29,7 @@ public class InstagramPostResponseParser {
 
     final static private String USER_KEY = "user";
     final static private String USERNAME_KEY = "username";
+    final static private String PROFILE_PICTURE = "profile_picture";
 
     final static private String LOCATION_KEY = "location";
     final static private String NAME_KEY = "name";
@@ -50,6 +51,7 @@ public class InstagramPostResponseParser {
             String type = jsonObject.getString(TYPE_KEY);
 
             String username = jsonObject.getJSONObject(USER_KEY).getString(USERNAME_KEY);
+            String profilePictureLink = jsonObject.getJSONObject(USER_KEY).getString(PROFILE_PICTURE);
 
             InstagramPost.InstagramPostContentType contentType = InstagramPost.InstagramPostContentType.DEFAULT;
             String contentUrl = null;
@@ -81,19 +83,27 @@ public class InstagramPostResponseParser {
 
             long createdTime = Long.valueOf(jsonObject.getString(CREATED_TIME_KEY));
 
-            InstagramPost.InstagramComment[] comments = new InstagramPost.InstagramComment[COMMENT_COUNT];
+            InstagramPost.InstagramComment[] comments = new InstagramPost.InstagramComment[0];
             JSONArray commentsJSONArray = jsonObject.getJSONObject(COMMENTS_KEY).getJSONArray(DATA_KEY);
             if (commentsJSONArray.length() > 0) {
+                int arrayLength = Math.min(COMMENT_COUNT, commentsJSONArray.length());
+                comments = new InstagramPost.InstagramComment[arrayLength];
                 for (int j = 0; j < COMMENT_COUNT && j < commentsJSONArray.length(); j++) {
                     JSONObject commentJSONObject = commentsJSONArray.getJSONObject(j);
                     String commentText = commentJSONObject.getString(TEXT_KEY);
+                    if (commentText == null) {
+                        commentText = "";
+                    }
                     String commentUsername = commentJSONObject.getJSONObject(FROM_KEY).getString(USERNAME_KEY);
+                    if (commentUsername == null) {
+                        commentUsername = "";
+                    }
                     InstagramPost.InstagramComment comment = new InstagramPost.InstagramComment(commentUsername, commentText);
                     comments[j] = comment;
                 }
             }
 
-            InstagramPost post = new InstagramPost(username, caption, contentUrl, postLocation, createdTime, likesCount, comments, contentType);
+            InstagramPost post = new InstagramPost(username, caption, contentUrl, postLocation, createdTime, likesCount, comments, contentType, profilePictureLink);
             posts.add(post);
         }
 

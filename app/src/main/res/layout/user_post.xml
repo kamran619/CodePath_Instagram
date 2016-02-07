@@ -5,7 +5,7 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="wrap_content"
         android:id="@+id/userContainer">
         <ImageView
             android:id="@+id/avatar"
@@ -23,7 +23,12 @@
             android:layout_alignTop="@+id/avatar"
             android:layout_toRightOf="@+id/avatar"
             android:text="kamran619"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@+id/postTime"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/colorBahamaBlue"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/location"
             android:layout_width="wrap_content"
@@ -32,7 +37,9 @@
             android:layout_toRightOf="@+id/avatar"
             android:text="Brooklyn Bridge Park"
             android:layout_alignBottom="@+id/avatar"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorPictonBlue" />
         <TextView
             android:id="@+id/postTime"
             android:layout_width="wrap_content"
@@ -41,7 +48,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:text="10h"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorLoblolly" />
     </RelativeLayout>
 
     <ImageView
@@ -49,13 +57,16 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_below="@+id/userContainer"
-        />
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:layout_marginTop="10dp" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="135dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/postImage"
-        android:id="@+id/contentContainer">
+        android:id="@+id/contentContainer"
+        android:paddingBottom="10dp">
 
         <TextView
             android:id="@+id/likes"
@@ -66,7 +77,9 @@
             android:layout_alignParentLeft="true"
             android:text="11 likes"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/colorBahamaBlue"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/caption"
             android:layout_width="wrap_content"
@@ -79,16 +92,17 @@
             android:layout_below="@+id/likes"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
-            android:ellipsize="end" />
+            android:ellipsize="end"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/colorPaleSky" />
         <TextView
             android:id="@+id/comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="2"
             android:text="xoxox This is awesome!\nBlackdemon619 Hiii"
             android:ellipsize="end"
             android:layout_below="@+id/caption"
-            android:layout_alignLeft="@+id/caption"
-            android:layout_alignStart="@+id/caption" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
     </RelativeLayout>
 </RelativeLayout>

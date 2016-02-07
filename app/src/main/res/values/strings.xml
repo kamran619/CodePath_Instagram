@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Popular Photos</string>
+    <string name="fetch_status_error">An error occured while fetching your stream:</string>
 </resources>
