@@ -128,4 +128,6 @@
             android:ellipsize="end"
             android:text="xoxox This is awesome!\nBlackdemon619 Hiii" />
     </RelativeLayout>
+
+    <View style="@style/Divider"/>
 </RelativeLayout>
