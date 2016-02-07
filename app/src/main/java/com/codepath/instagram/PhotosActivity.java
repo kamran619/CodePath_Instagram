@@ -10,18 +10,20 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class PhotosActivity extends AppCompatActivity {
 
     private UserPostAdapter mAdapter;
-    private ListView lvPosts;
-    private SwipeRefreshLayout swipeContainer;
+    @Bind(R.id.lvPicture) ListView lvPosts;
+    @Bind(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lvPosts = (ListView) findViewById(R.id.lvPicture);
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        ButterKnife.bind(this);
         setupRefreshLayout();
         fetchAndDisplayInstagramPosts(true);
     }

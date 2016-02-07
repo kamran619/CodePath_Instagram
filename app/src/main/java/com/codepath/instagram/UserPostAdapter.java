@@ -59,7 +59,7 @@ public class UserPostAdapter extends ArrayAdapter<InstagramPost> {
         if (post.getContentType() == InstagramPost.InstagramPostContentType.PHOTO) {
             ivImage.setVisibility(View.VISIBLE);
             mVideoView.setVisibility(View.GONE);
-            Picasso.with(getContext()).load(post.getContentUrl()).into(ivImage);
+            Picasso.with(getContext()).load(post.getContentUrl()).placeholder(R.drawable.placeholder).into(ivImage);
         } else if (post.getContentType() == InstagramPost.InstagramPostContentType.VIDEO) {
             ivImage.setVisibility(View.GONE);
             mVideoView.setVisibility(View.VISIBLE);
@@ -81,7 +81,12 @@ public class UserPostAdapter extends ArrayAdapter<InstagramPost> {
         if (caption == null || caption.length() == 0) {
             tvCaption.setVisibility(View.GONE);
         } else {
-            tvCaption.setText(post.getCaption());
+            SpannableStringBuilder spannableCaption = new SpannableStringBuilder();
+
+            spannableCaption.append(caption);
+            colorHashtagsInText(spannableCaption, caption, 0);
+            colorTagsInText(spannableCaption, caption, 0);
+            tvCaption.setText(spannableCaption);
         }
 
         TextView tvLikes = (TextView) convertView.findViewById(R.id.likes);
@@ -106,6 +111,9 @@ public class UserPostAdapter extends ArrayAdapter<InstagramPost> {
             commentsString.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.colorBahamaBlue)), spanBeginning, username.length() + spanBeginning, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             commentsString.append(" ");
             commentsString.append(comment);
+            int commentSpanBeginning = commentsString.length() - comment.length();
+            colorHashtagsInText(commentsString, comment, commentSpanBeginning);
+            colorTagsInText(commentsString, comment, commentSpanBeginning);
             if (i < comments.length - 1) {
                 commentsString.append("\n\n");
             }
@@ -114,5 +122,28 @@ public class UserPostAdapter extends ArrayAdapter<InstagramPost> {
         return commentsString;
     }
 
+    private void colorHashtagsInText(SpannableStringBuilder inBuilder, String text, int spanBeginning) {
+        final String hashtagDelimeter = "#";
+        colorSymbolInText(hashtagDelimeter, inBuilder, text, spanBeginning);
+    }
 
+    private void colorTagsInText(SpannableStringBuilder inBuilder, String text, int spanBeginning) {
+        final String tagDelimeter = "@";
+        colorSymbolInText(tagDelimeter, inBuilder, text, spanBeginning);
+    }
+
+    private void colorSymbolInText(String symbol, SpannableStringBuilder inBuilder, String text, int spanBeginning) {
+            boolean commentContainsSymbol = text.contains(symbol);
+            if (commentContainsSymbol == true) {
+                for (int index = text.indexOf(symbol); index >= 0; index = text.indexOf(symbol, index + 1)) {
+
+                    int endOfSymbol = text.indexOf(" ", index + 1);
+                    if (endOfSymbol == -1) {
+                        endOfSymbol = text.length();
+                    }
+                    inBuilder.setSpan(new StyleSpan(Typeface.ITALIC), index + spanBeginning, endOfSymbol + spanBeginning, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    inBuilder.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.colorBahamaBlue)), index + spanBeginning, endOfSymbol + spanBeginning, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+            }
+        }
 }
