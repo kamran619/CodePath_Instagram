@@ -55,20 +55,41 @@
             android:textColor="@color/colorLoblolly" />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/postImage"
+    <RelativeLayout
+        android:id="@+id/mediaContainer"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_below="@+id/userContainer"
-        android:layout_marginTop="10dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY" />
+        android:layout_below="@+id/userContainer">
+
+        <VideoView
+            android:id="@+id/postVideo"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
+
+        <ImageView
+            android:id="@+id/postImage"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/contentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/postImage"
+        android:layout_below="@+id/mediaContainer"
         android:paddingBottom="10dp">
 
         <TextView

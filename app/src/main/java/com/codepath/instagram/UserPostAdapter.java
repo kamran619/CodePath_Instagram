@@ -2,6 +2,7 @@ package com.codepath.instagram;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -11,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.codepath.instagram.com.codepath.instagram.picassoutils.CircleTransform;
 import com.ocpsoft.pretty.time.PrettyTime;
@@ -52,8 +55,25 @@ public class UserPostAdapter extends ArrayAdapter<InstagramPost> {
         tvCreationTime.setText(relativeTime);
 
         ImageView ivImage = (ImageView) convertView.findViewById(R.id.postImage);
+        final VideoView mVideoView = (VideoView) convertView.findViewById(R.id.postVideo);
         if (post.getContentType() == InstagramPost.InstagramPostContentType.PHOTO) {
+            ivImage.setVisibility(View.VISIBLE);
+            mVideoView.setVisibility(View.GONE);
             Picasso.with(getContext()).load(post.getContentUrl()).into(ivImage);
+        } else if (post.getContentType() == InstagramPost.InstagramPostContentType.VIDEO) {
+            ivImage.setVisibility(View.GONE);
+            mVideoView.setVisibility(View.VISIBLE);
+            mVideoView.setVideoPath(post.getContentUrl());
+            MediaController mediaController = new MediaController(getContext());
+            mediaController.setAnchorView(mVideoView);
+            mVideoView.setMediaController(mediaController);
+            mVideoView.requestFocus();
+            mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                // Close the progress bar and play the video
+                public void onPrepared(MediaPlayer mp) {
+                    mVideoView.start();
+                }
+            });
         }
 
         TextView tvCaption = (TextView) convertView.findViewById(R.id.caption);
