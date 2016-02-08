@@ -39,14 +39,11 @@ Here's a walkthrough of implemented user stories:
 
 <img src='gif/instagram_gif.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-## Notes
-
-Describe any challenges encountered while building the app.
-
 ## Open-source libraries used
 
-- [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
+- [OKHTtp](http://square.github.io/okhttp/) - Simple asynchronous HTTP requests with JSON parsing
 - [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
+- [PrettyTime](http://www.ocpsoft.org/prettytime/) - Calculate the relative time, given a timestamp
 
 ## License
 
